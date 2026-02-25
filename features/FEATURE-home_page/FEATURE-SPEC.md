@@ -43,10 +43,15 @@
 - **Architecture intent:** preserve clean boundaries so hero data (titles, descriptions, collection items, navigation destinations) can later be replaced by API-backed props/state without restructuring semantic landmarks.
 
 ***Checkpoint 2: Shell + Hero TSX Structure***
-- [ ] Implement the minimal app shell and hero in `src/App.tsx` using React TSX and semantic tags.
-- [ ] Keep sections and JSX cleanly organized for future extraction into dedicated components/files.
-- [ ] Ensure heading and CTA/content ordering reflects the Figma hierarchy and accessibility baseline.
-- [ ] A test: update/add e2e assertions in `e2e/app-shell.spec.ts` for shell landmarks and hero primary heading; run `pnpm test:e2e:nix`.
+- [x] Implement the minimal app shell and hero in `src/App.tsx` using React TSX and semantic tags.
+- [x] Keep sections and JSX cleanly organized for future extraction into dedicated components/files.
+- [x] Ensure heading and CTA/content ordering reflects the Figma hierarchy and accessibility baseline.
+- [x] A test: update/add e2e assertions in `e2e/app-shell.spec.ts` for shell landmarks and hero primary heading; run `pnpm test:e2e:nix`.
+
+### Checkpoint 2 Notes (2026-02-25)
+- **Shell + hero structure status:** semantic shell (`header`, `main`, `footer`) and hero hierarchy remain implemented via modular home feature components (`HomeHeader`, `HeroSection`, `HomeFooter`) routed from the app entry.
+- **E2E updates:** `e2e/app-shell.spec.ts` now asserts `banner`, `main`, and `contentinfo` landmarks and validates the hero `h1` text (`Obsidian Artifact Co.`).
+- **Validation:** `pnpm test:e2e:nix` executed successfully with both configured Playwright projects passing.
 
 ***Checkpoint 3: Tailwind Styling + Global Base Styles***
 - [ ] Implement hero and shell styling with Tailwind utility classes aligned to the Figma visual intent.
