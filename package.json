@@ -8,9 +8,15 @@
 		"build": "tsc && vite build",
 		"preview": "vite preview",
 		"lint": "eslint .",
-		"test:e2e": "playwright test"
+		"lint:nix": "LIBGBM_PATH=\"$(nix eval --raw nixpkgs#libgbm.outPath)/lib\" NIX_LD_LIBRARY_PATH=\"$LIBGBM_PATH:${NIX_LD_LIBRARY_PATH:-}\" LD_LIBRARY_PATH=\"$LIBGBM_PATH:${LD_LIBRARY_PATH:-}\" pnpm lint",
+		"test:e2e": "playwright test",
+		"test:e2e:nix": "LIBGBM_PATH=\"$(nix eval --raw nixpkgs#libgbm.outPath)/lib\" NIX_LD_LIBRARY_PATH=\"$LIBGBM_PATH:${NIX_LD_LIBRARY_PATH:-}\" LD_LIBRARY_PATH=\"$LIBGBM_PATH:${LD_LIBRARY_PATH:-}\" pnpm test:e2e",
+		"check:pr": "pnpm lint && pnpm test:e2e",
+		"check:pr:nix": "LIBGBM_PATH=\"$(nix eval --raw nixpkgs#libgbm.outPath)/lib\" NIX_LD_LIBRARY_PATH=\"$LIBGBM_PATH:${NIX_LD_LIBRARY_PATH:-}\" LD_LIBRARY_PATH=\"$LIBGBM_PATH:${LD_LIBRARY_PATH:-}\" pnpm check:pr"
 	},
 	"dependencies": {
+		"deps": "^1.0.0",
+		"playwright": "^1.58.2",
 		"react": "^19.2.4",
 		"react-dom": "^19.2.4",
 		"typescript": "^5.9.3"

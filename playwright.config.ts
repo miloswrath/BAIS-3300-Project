@@ -1,35 +1,25 @@
-import { defineConfig } from '@playwright/test'
+import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
-    testDir: './e2e',
-    fullyParallel: true,
-    reporter: 'list',
+    testDir: 'e2e',
     use: {
-        baseURL: 'http://127.0.0.1:4173',
+        baseURL: 'http://127.0.0.1:4175',
         trace: 'on-first-retry',
+    },
+    webServer: {
+        command: 'pnpm dev --host 127.0.0.1 --port 4175',
+        url: 'http://127.0.0.1:4175',
+        reuseExistingServer: true,
+        timeout: 120000,
     },
     projects: [
         {
-            name: 'desktop-firefox',
-            use: {
-                browserName: 'firefox',
-                viewport: { width: 1280, height: 720 },
-            },
+            name: 'mobile-chromium',
+            use: { ...devices['Pixel 5'] },
         },
         {
-            name: 'mobile-firefox',
-            use: {
-                browserName: 'firefox',
-                viewport: { width: 393, height: 851 },
-                isMobile: true,
-                hasTouch: true,
-            },
+            name: 'desktop-chromium',
+            use: { ...devices['Desktop Chrome'] },
         },
     ],
-    webServer: {
-        command: 'pnpm dev --host 127.0.0.1 --port 4173',
-        url: 'http://127.0.0.1:4173',
-        reuseExistingServer: true,
-        timeout: 120 * 1000,
-    },
 })
