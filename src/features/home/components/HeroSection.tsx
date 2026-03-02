@@ -127,37 +127,29 @@ export function HeroSection() {
                             </p>
                         </div>
 
-                        <div className="flex flex-wrap items-center gap-3 sm:justify-between lg:flex-col lg:items-start">
-                            <div className="flex gap-3" aria-hidden="true">
-                                <span className="rounded-full border border-white/15 px-4 py-2 text-xs uppercase tracking-[0.24em] text-stone-100/70">
-                                    Swipe
-                                </span>
-                                <span className="rounded-full border border-white/15 px-4 py-2 text-xs uppercase tracking-[0.24em] text-stone-100/70">
-                                    Scroll
-                                </span>
-                            </div>
+                        <div className="flex flex-wrap items-center gap-3 lg:flex-col lg:items-start">
                             <ol className="flex gap-3 lg:flex-col" aria-label="Current collection image selector">
-                            {currentCollectionSlides.map((collection, index) => {
-                                const isActive = index === activeCollectionIndex
+                                {currentCollectionSlides.map((collection, index) => {
+                                    const isActive = index === activeCollectionIndex
 
-                                return (
-                                    <li key={collection.id}>
-                                        <button
-                                            type="button"
-                                            onClick={() => setActiveCollectionIndex(index)}
-                                            className={`flex h-14 w-10 items-center justify-center rounded-full text-sm tracking-[0.18em] transition-all duration-500 ease-out ${
-                                                isActive
-                                                    ? 'bg-stone-100 text-zinc-900 shadow-[0_12px_35px_rgba(255,255,255,0.22)]'
-                                                    : 'border border-white/30 bg-white/5 text-white hover:bg-white/12'
-                                            }`}
-                                            aria-label={`Show current collection image ${index + 1}`}
-                                            aria-pressed={isActive}
-                                        >
-                                            {`0${index + 1}`}
-                                        </button>
-                                    </li>
-                                )
-                            })}
+                                    return (
+                                        <li key={collection.id}>
+                                            <button
+                                                type="button"
+                                                onClick={() => setActiveCollectionIndex(index)}
+                                                className={`flex h-14 w-10 items-center justify-center rounded-full text-sm tracking-[0.18em] transition-all duration-500 ease-out ${
+                                                    isActive
+                                                        ? 'bg-stone-100 text-zinc-900 shadow-[0_12px_35px_rgba(255,255,255,0.22)]'
+                                                        : 'border border-white/30 bg-white/5 text-white hover:bg-white/12'
+                                                }`}
+                                                aria-label={`Show current collection image ${index + 1}`}
+                                                aria-pressed={isActive}
+                                            >
+                                                {`0${index + 1}`}
+                                            </button>
+                                        </li>
+                                    )
+                                })}
                             </ol>
                         </div>
                     </div>

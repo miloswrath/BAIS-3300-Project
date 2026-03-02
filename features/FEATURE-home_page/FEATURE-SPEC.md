@@ -78,7 +78,13 @@
 - **Validation:** `pnpm lint:nix` and `pnpm test:e2e:nix` both completed successfully inside `nix develop`, with 6 Playwright checks passing across `mobile-chromium` and `desktop-chromium`.
 
 ***Checkpoint 5: Final Verification + Spec Sync***
-- [ ] Run full pre-PR validation for this feature branch.
-- [ ] Confirm FR-01 through FR-08 are each satisfied by implemented code and test coverage.
-- [ ] Update this checklist progress (`[ ]` to `[x]`) checkpoint-by-checkpoint as commits land.
-- [ ] A test: run `pnpm check:pr:nix` as the final gate before opening a PR.
+- [x] Run full pre-PR validation for this feature branch.
+- [x] Confirm FR-01 through FR-08 are each satisfied by implemented code and test coverage.
+- [x] Update this checklist progress (`[ ]` to `[x]`) checkpoint-by-checkpoint as commits land.
+- [x] A test: run `pnpm check:pr:nix` as the final gate before opening a PR.
+
+### Checkpoint 5 Notes (2026-03-02)
+- **Final gate:** `pnpm check:pr:nix` completed successfully inside `nix develop`, which reran ESLint and the full Playwright suite for this branch.
+- **FR coverage summary:** FR-01 through FR-08 are satisfied by the current React TSX + Tailwind implementation, semantic shell/component structure, global CSS tokens, responsive hero/archive layout, accessible labels/live region text, and end-to-end coverage across mobile and desktop projects.
+- **Spec sync:** all checkpoints defined in this feature spec are now marked complete and the notes reflect the validations executed on March 2, 2026.
+- **Code-quality cleanup:** removed an empty hero control wrapper left in the worktree so the final state stays aligned with FR-06's maintainability requirement.
