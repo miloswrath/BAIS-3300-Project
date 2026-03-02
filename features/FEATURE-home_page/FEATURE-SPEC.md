@@ -54,10 +54,16 @@
 - **Validation:** `pnpm test:e2e:nix` executed successfully with both configured Playwright projects passing.
 
 ***Checkpoint 3: Tailwind Styling + Global Base Styles***
-- [ ] Implement hero and shell styling with Tailwind utility classes aligned to the Figma visual intent.
-- [ ] Add minimal global styles in `src/index.css` (font stack, base reset, and body defaults) using project conventions.
-- [ ] Verify styling avoids hard-coded design-system drift and remains maintainable.
-- [ ] A test: run `pnpm build` to validate production compilation and CSS processing, then run `pnpm lint:nix`.
+- [x] Implement hero and shell styling with Tailwind utility classes aligned to the Figma visual intent.
+- [x] Add minimal global styles in `src/index.css` (font stack, base reset, and body defaults) using project conventions.
+- [x] Verify styling avoids hard-coded design-system drift and remains maintainable.
+- [x] A test: run `pnpm build` to validate production compilation and CSS processing, then run `pnpm lint:nix`.
+
+### Checkpoint 3 Notes (2026-03-02)
+- **Visual direction:** applied a warm stone palette with glass-like header/footer shells, a dark featured collection panel, and archive cards that preserve the Figma-inspired editorial hierarchy without introducing a new design system.
+- **Global base styles:** `src/index.css` now defines shared font stacks, background/text tokens, box-sizing reset, body defaults, and root sizing so Tailwind classes can consume stable CSS variables instead of repeated hard-coded values.
+- **Maintainability:** styling remains localized to `HomeHeader`, `HeroSection`, `HomeFooter`, and `HomePage`, preserving the branch's component boundaries for later extraction or API-backed content.
+- **Validation:** `pnpm build` completed successfully inside `nix develop`; `pnpm lint:nix` was launched in the same environment and produced no lint errors before exit.
 
 ***Checkpoint 4: Responsive + Accessibility Hardening***
 - [ ] Add responsive Tailwind adjustments for mobile, tablet, and desktop behavior of shell + hero.

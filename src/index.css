@@ -1,1 +1,67 @@
 @import 'tailwindcss';
+
+:root {
+    color-scheme: light;
+    --font-sans:
+        'Avenir Next', 'Segoe UI', 'Helvetica Neue', Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', 'Times New Roman', ui-serif, serif;
+    --page-background: #ece5da;
+    --panel-background: rgba(255, 255, 255, 0.58);
+    --panel-border: rgba(34, 24, 18, 0.12);
+    --text-primary: #201815;
+    --text-secondary: #5b4a41;
+    --shadow-soft: 0 24px 60px rgba(32, 24, 21, 0.08);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: var(--font-sans);
+    background: radial-gradient(circle at top, #f5efe6 0%, var(--page-background) 52%, #ddd3c5 100%);
+    color: var(--text-primary);
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background: transparent;
+    color: inherit;
+}
+
+body,
+button,
+a {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+button,
+a,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+#root {
+    min-height: 100vh;
+}
