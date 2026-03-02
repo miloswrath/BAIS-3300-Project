@@ -15,6 +15,7 @@ export function HeroSection() {
 
     const SLIDE_CHANGE_COOLDOWN_MS = 380
     const TOUCH_THRESHOLD_PX = 24
+    const activeSlide = currentCollectionSlides[activeCollectionIndex]
 
     const moveSlide = (direction: 1 | -1) => {
         const currentTime = Date.now()
@@ -43,7 +44,7 @@ export function HeroSection() {
 
     return (
         <section aria-labelledby="hero-title" className="flex w-full flex-col gap-6 lg:gap-8">
-            <div className="grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(300px,0.85fr)] lg:items-end">
+            <div className="grid gap-6 md:gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(300px,0.85fr)] lg:items-end">
                 <div className="space-y-4">
                     <p className="text-xs font-medium uppercase tracking-[0.34em] text-[color:var(--text-secondary)]">
                         Studio release
@@ -63,6 +64,7 @@ export function HeroSection() {
 
             <article
                 aria-labelledby="current-collection-heading"
+                aria-describedby="current-collection-description current-collection-instructions current-collection-status"
                 className="relative isolate overflow-hidden rounded-[2rem] border border-black/10 bg-[linear-gradient(145deg,rgba(34,24,21,0.94),rgba(72,48,40,0.88))] text-white shadow-[0_30px_80px_rgba(32,24,21,0.22)] touch-none"
                 onWheel={(event) => {
                     if (Math.abs(event.deltaY) < 6) {
@@ -94,7 +96,7 @@ export function HeroSection() {
                     touchStartYRef.current = null
                 }}
             >
-                <div className="grid min-h-[31rem] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
+                <div className="grid min-h-[32rem] md:min-h-[34rem] lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)]">
                     <div className="relative flex flex-col justify-between gap-8 p-5 sm:p-7 lg:p-10">
                         <div className="space-y-4">
                             <p className="text-xs uppercase tracking-[0.32em] text-stone-200/72">Current release</p>
@@ -109,13 +111,32 @@ export function HeroSection() {
                                     FW 26
                                 </p>
                             </div>
-                            <p className="max-w-sm text-sm leading-6 text-stone-200/86 sm:text-base">
+                            <p
+                                id="current-collection-description"
+                                className="max-w-sm text-sm leading-6 text-stone-200/86 sm:text-base"
+                            >
                                 Scroll or swipe through the featured frame studies from this season&rsquo;s obsidian
                                 series.
                             </p>
+                            <p id="current-collection-instructions" className="sr-only">
+                                Use the numbered controls to preview each current collection image.
+                            </p>
+                            <p id="current-collection-status" aria-live="polite" className="sr-only">
+                                Currently showing slide {activeCollectionIndex + 1} of {currentCollectionSlides.length}:{' '}
+                                {activeSlide.imageAlt}
+                            </p>
                         </div>
 
-                        <ol className="flex gap-3" aria-label="Current collection image selector">
+                        <div className="flex flex-wrap items-center gap-3 sm:justify-between lg:flex-col lg:items-start">
+                            <div className="flex gap-3" aria-hidden="true">
+                                <span className="rounded-full border border-white/15 px-4 py-2 text-xs uppercase tracking-[0.24em] text-stone-100/70">
+                                    Swipe
+                                </span>
+                                <span className="rounded-full border border-white/15 px-4 py-2 text-xs uppercase tracking-[0.24em] text-stone-100/70">
+                                    Scroll
+                                </span>
+                            </div>
+                            <ol className="flex gap-3 lg:flex-col" aria-label="Current collection image selector">
                             {currentCollectionSlides.map((collection, index) => {
                                 const isActive = index === activeCollectionIndex
 
@@ -137,10 +158,14 @@ export function HeroSection() {
                                     </li>
                                 )
                             })}
-                        </ol>
+                            </ol>
+                        </div>
                     </div>
 
-                    <div className="relative min-h-[20rem] overflow-hidden lg:min-h-full">
+                    <div
+                        className="relative min-h-[20rem] overflow-hidden rounded-t-[1.5rem] lg:min-h-full lg:rounded-none"
+                        aria-label="Current collection imagery"
+                    >
                         {currentCollectionSlides.map((slide, index) => {
                             const isActive = index === activeCollectionIndex
 
@@ -175,7 +200,7 @@ export function HeroSection() {
             </article>
 
             <section aria-labelledby="previous-collections-heading" className="space-y-4">
-                <div className="flex items-end justify-between gap-3">
+                <div className="flex flex-wrap items-end justify-between gap-3">
                     <h2
                         id="previous-collections-heading"
                         className="font-[family-name:var(--font-serif)] text-2xl text-[color:var(--text-primary)] sm:text-3xl"
@@ -188,7 +213,7 @@ export function HeroSection() {
                     {previousCollections.map((collection) => (
                         <li
                             key={collection.id}
-                            className="group relative h-28 overflow-hidden rounded-[1.5rem] border border-black/8 bg-stone-900 shadow-[0_18px_42px_rgba(32,24,21,0.14)] sm:h-36"
+                            className="group relative h-32 overflow-hidden rounded-[1.5rem] border border-black/8 bg-stone-900 shadow-[0_18px_42px_rgba(32,24,21,0.14)] sm:h-36 lg:h-40"
                         >
                             <img
                                 src={collection.imageSrc}

@@ -66,10 +66,16 @@
 - **Validation:** `pnpm build` completed successfully inside `nix develop`; `pnpm lint:nix` was launched in the same environment and produced no lint errors before exit.
 
 ***Checkpoint 4: Responsive + Accessibility Hardening***
-- [ ] Add responsive Tailwind adjustments for mobile, tablet, and desktop behavior of shell + hero.
-- [ ] Ensure baseline accessibility requirements are met (logical heading order, meaningful text, alt text where applicable).
-- [ ] Keep implementation limited to current feature scope without adding extra pages/components.
-- [ ] A test: extend e2e checks for at least one desktop and one mobile project expectation, then run `pnpm test:e2e:nix`.
+- [x] Add responsive Tailwind adjustments for mobile, tablet, and desktop behavior of shell + hero.
+- [x] Ensure baseline accessibility requirements are met (logical heading order, meaningful text, alt text where applicable).
+- [x] Keep implementation limited to current feature scope without adding extra pages/components.
+- [x] A test: extend e2e checks for at least one desktop and one mobile project expectation, then run `pnpm test:e2e:nix`.
+
+### Checkpoint 4 Notes (2026-03-02)
+- **Responsive behavior:** the hero intro, feature panel, archive cards, and image selector now adapt across mobile, tablet, and desktop layouts with explicit breakpoint changes rather than relying on default wrapping.
+- **Accessibility hardening:** the current collection card now exposes descriptive `aria-describedby` content, a polite live region for the active slide, preserved heading order, and clearer navigation state via `aria-current` on the footer home link.
+- **Scope control:** changes stayed within the existing homepage shell/components and Playwright spec; no additional routes or unrelated feature work were introduced.
+- **Validation:** `pnpm lint:nix` and `pnpm test:e2e:nix` both completed successfully inside `nix develop`, with 6 Playwright checks passing across `mobile-chromium` and `desktop-chromium`.
 
 ***Checkpoint 5: Final Verification + Spec Sync***
 - [ ] Run full pre-PR validation for this feature branch.

@@ -10,6 +10,7 @@ export function HomeFooter() {
                         <a
                             href="#"
                             aria-label="Go to Home"
+                            aria-current="page"
                             className="rounded-full px-3 py-2 transition hover:bg-white/40 hover:text-[color:var(--text-primary)]"
                         >
                             Home
