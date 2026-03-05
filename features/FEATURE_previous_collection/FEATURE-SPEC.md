@@ -41,10 +41,17 @@
 - **Validation:** `pnpm lint:nix` executed successfully on March 5, 2026 with no ESLint violations.
 
 ***Checkpoint 2: Page TSX Structure***
-- [ ] Implement the page shell and content structure in React TSX using semantic tags.
-- [ ] Keep sections and JSX organized for future extraction into dedicated components/files.
-- [ ] Ensure heading and content ordering reflects the Figma hierarchy and accessibility baseline.
-- [ ] A test: update/add e2e assertions in `e2e/app-shell.spec.ts` for shell landmarks and previous-collection heading content; run `pnpm test:e2e:nix`.
+- [x] Implement the page shell and content structure in React TSX using semantic tags.
+- [x] Keep sections and JSX organized for future extraction into dedicated components/files.
+- [x] Ensure heading and content ordering reflects the Figma hierarchy and accessibility baseline.
+- [x] A test: update/add e2e assertions in `e2e/app-shell.spec.ts` for shell landmarks and previous-collection heading content; run `pnpm test:e2e:nix`.
+
+### Checkpoint 2 Notes (2026-03-05)
+- **Page structure status:** route `/previous-collection` now renders a semantic shell (`header`, `main`, `footer`) via `PreviousCollectionPage` and composes modular feature sections.
+- **Section organization:** content is split into intro, featured media, supporting content, and bottom navigation components to preserve clean extraction boundaries.
+- **Heading/content order:** `h1` (`SS 25`) remains within the intro section, with additional section-level accessible headings for featured media and supporting content.
+- **E2E updates:** `e2e/app-shell.spec.ts` now includes `previous collection page renders semantic shell and heading content` and asserts `banner`, `main`, `contentinfo`, and key heading/copy.
+- **Validation:** `pnpm test:e2e:nix` executed successfully on March 5, 2026 with all 8 Playwright checks passing across mobile and desktop projects.
 
 ***Checkpoint 3: Tailwind Styling + Base Integration***
 - [ ] Implement page styling with Tailwind utility classes aligned to the Figma visual intent.

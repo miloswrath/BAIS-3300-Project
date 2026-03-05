@@ -2,7 +2,10 @@ import currentCollection1Image from '../../../assets/images/Current-Collection-1
 
 export function PreviousCollectionFeaturedMedia() {
     return (
-        <section aria-label="Featured media" className="space-y-3">
+        <section aria-labelledby="featured-media-heading" className="space-y-3">
+            <h2 id="featured-media-heading" className="sr-only">
+                Featured media
+            </h2>
             <figure className="overflow-hidden rounded-2xl border border-black/10 shadow-[var(--shadow-soft)]">
                 <img
                     src={currentCollection1Image}

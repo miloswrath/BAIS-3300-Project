@@ -10,6 +10,17 @@ test('app shell renders expected content', async ({ page }) => {
     await expect(page.getByRole('heading', { level: 1, name: 'Obsidian Artifact Co.' })).toBeVisible()
 })
 
+test('previous collection page renders semantic shell and heading content', async ({ page }) => {
+    await page.goto('/previous-collection')
+
+    await expect(page.getByRole('banner')).toBeVisible()
+    await expect(page.getByRole('main')).toBeVisible()
+    await expect(page.getByRole('contentinfo')).toBeVisible()
+
+    await expect(page.getByRole('heading', { level: 1, name: 'SS 25' })).toBeVisible()
+    await expect(page.getByText('Previous Collections')).toBeVisible()
+})
+
 test('collection archive adapts to mobile and desktop layouts', async ({ page }, testInfo) => {
     await page.goto('/')
 
