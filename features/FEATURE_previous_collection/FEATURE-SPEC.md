@@ -27,10 +27,18 @@
 ## Implementation Plan
 ---
 ***Checkpoint 1: Figma Extraction + Semantic Content Map***
-- [ ] Use Figma MCP on node `11:140` to capture full page content, hierarchy, and layout intent.
-- [ ] Translate the design into a semantic element map for `header`, `main`, and `footer` (no div-soup).
-- [ ] Record explicit component boundaries for modular frontend implementation.
-- [ ] A test: run `pnpm lint:nix` and confirm no lint violations after introducing initial semantic structure stubs.
+- [x] Use Figma MCP on node `11:140` to capture full page content, hierarchy, and layout intent.
+- [x] Translate the design into a semantic element map for `header`, `main`, and `footer` (no div-soup).
+- [x] Record explicit component boundaries for modular frontend implementation.
+- [x] A test: run `pnpm lint:nix` and confirm no lint violations after introducing initial semantic structure stubs.
+
+### Checkpoint 1 Notes (2026-03-05)
+- **Figma extraction source:** node `11:140` from file `6QsHElVju3cXecvhmzqHZ6` via Figma MCP (`get_design_context`).
+- **Observed content hierarchy:** top nav row (menu + brand + CTA), previous-collection intro copy, featured media block with two annotation callouts, supporting 2x2 content grid with descriptive copy, and bottom navigation row.
+- **Semantic map:** `header` → primary nav; `main` → intro (`h1` + supporting text), featured media section, supporting content section; `footer` → bottom nav.
+- **Component boundaries recorded for implementation:** `PreviousCollectionHeader`, `PreviousCollectionIntro`, `PreviousCollectionFeaturedMedia`, `PreviousCollectionSupportingContent`, `PreviousCollectionBottomNavigation`, composed by `PreviousCollectionPage`.
+- **Checkpoint 1 stub status:** initial semantic stubs + route scaffolded at `/previous-collection` in React TSX and organized under `src/features/previousCollection` + `src/pages/previousCollection`.
+- **Validation:** `pnpm lint:nix` executed successfully on March 5, 2026 with no ESLint violations.
 
 ***Checkpoint 2: Page TSX Structure***
 - [ ] Implement the page shell and content structure in React TSX using semantic tags.
