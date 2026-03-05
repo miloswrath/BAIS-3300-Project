@@ -21,6 +21,48 @@ test('previous collection page renders semantic shell and heading content', asyn
     await expect(page.getByText('Previous Collections')).toBeVisible()
 })
 
+test('previous collection supporting block responds across breakpoints', async ({ page }, testInfo) => {
+    await page.goto('/previous-collection')
+
+    const featuredMediaRegion = page.getByRole('region', { name: 'Featured media' })
+    const supportingRegion = page.getByRole('region', { name: 'Supporting content' })
+
+    await expect(featuredMediaRegion).toBeVisible()
+    await expect(supportingRegion).toBeVisible()
+
+    const featuredMediaBox = await featuredMediaRegion.boundingBox()
+    const supportingRegionBox = await supportingRegion.boundingBox()
+
+    expect(featuredMediaBox).not.toBeNull()
+    expect(supportingRegionBox).not.toBeNull()
+
+    expect(supportingRegionBox!.y).toBeGreaterThan(featuredMediaBox!.y + featuredMediaBox!.height * 0.72)
+
+    if (testInfo.project.name === 'mobile-chromium') {
+        expect(featuredMediaBox!.width).toBeLessThan(420)
+    }
+
+    if (testInfo.project.name === 'desktop-chromium') {
+        expect(featuredMediaBox!.width).toBeGreaterThan(680)
+        expect(featuredMediaBox!.height).toBeGreaterThan(330)
+    }
+})
+
+test('previous collection page exposes basic accessibility semantics', async ({ page }) => {
+    await page.goto('/previous-collection')
+
+    await expect(page.getByRole('navigation', { name: 'Primary' })).toBeVisible()
+    await expect(page.getByRole('navigation', { name: 'Bottom' })).toBeVisible()
+
+    await expect(page.getByRole('img', { name: 'Featured SS 25 obsidian artifact displayed in a room interior.' })).toBeVisible()
+
+    await expect(page.getByRole('heading', { level: 1, name: 'SS 25' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: 'Featured media' })).toBeVisible()
+    await expect(page.getByRole('heading', { level: 2, name: 'Supporting content' })).toBeVisible()
+
+    await expect(page.getByRole('link', { name: 'Go to Collections' })).toHaveAttribute('aria-current', 'page')
+})
+
 test('collection archive adapts to mobile and desktop layouts', async ({ page }, testInfo) => {
     await page.goto('/')
 

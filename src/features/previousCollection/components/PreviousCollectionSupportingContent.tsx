@@ -1,29 +1,26 @@
-const contentCards = [
-    { id: 'card-1', label: 'Supporting card 1' },
-    { id: 'card-2', label: 'Supporting card 2' },
-    { id: 'card-3', label: 'Supporting card 3' },
-    { id: 'card-4', label: 'Supporting card 4' },
-]
+import { previousCollectionContent, previousCollectionSupportingCards } from '../data/previousCollectionContent'
 
 export function PreviousCollectionSupportingContent() {
     return (
-        <section aria-labelledby="supporting-content-heading" className="grid grid-cols-[2fr_1fr] gap-4">
+        <section
+            aria-labelledby="supporting-content-heading"
+            className="grid grid-cols-[2fr_1fr] items-start gap-4 lg:gap-7"
+        >
             <h2 id="supporting-content-heading" className="sr-only">
                 Supporting content
             </h2>
-            <ul aria-label="Collection supporting media" className="grid grid-cols-2 gap-3">
-                {contentCards.map((contentCard) => (
+            <ul aria-label="Collection supporting media" className="grid grid-cols-2 gap-3" role="list">
+                {previousCollectionSupportingCards.map((contentCard) => (
                     <li
                         key={contentCard.id}
                         aria-label={contentCard.label}
-                        className="h-18 rounded-xl bg-black/12"
+                        className="h-[4.5rem] rounded-xl border border-[color:var(--panel-border)] bg-[color:var(--panel-background)] shadow-[0_8px_20px_rgba(32,24,21,0.06)] sm:h-[4.8rem] lg:h-[8.4rem]"
                     />
                 ))}
             </ul>
             <aside aria-label="Supporting description">
-                <p className="font-[family-name:var(--font-serif)] text-sm leading-6 text-[color:var(--text-secondary)]">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.
+                <p className="text-base leading-7 text-[color:var(--text-secondary)] lg:text-[1.2rem] lg:leading-9">
+                    {previousCollectionContent.supportingDescription}
                 </p>
             </aside>
         </section>

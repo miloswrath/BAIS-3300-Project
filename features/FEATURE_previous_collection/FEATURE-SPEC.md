@@ -54,16 +54,44 @@
 - **Validation:** `pnpm test:e2e:nix` executed successfully on March 5, 2026 with all 8 Playwright checks passing across mobile and desktop projects.
 
 ***Checkpoint 3: Tailwind Styling + Base Integration***
-- [ ] Implement page styling with Tailwind utility classes aligned to the Figma visual intent.
-- [ ] Add or adjust minimal shared styling only where needed using existing project conventions.
-- [ ] Verify styling remains maintainable and avoids hard-coded design-system drift.
-- [ ] A test: run `pnpm build` to validate production compilation and CSS processing, then run `pnpm lint:nix`.
+- [x] Implement page styling with Tailwind utility classes aligned to the Figma visual intent.
+- [x] Add or adjust minimal shared styling only where needed using existing project conventions.
+- [x] Verify styling remains maintainable and avoids hard-coded design-system drift.
+- [x] A test: run `pnpm build` to validate production compilation and CSS processing, then run `pnpm lint:nix`.
+
+### Checkpoint 3 Notes (2026-03-05)
+- **Styling implementation:** refined the previous-collection page to a mobile-first Figma-aligned presentation (neutral page field, compact top nav, rounded featured image card with annotation callouts, 2x2 supporting blocks, and simplified bottom nav row).
+- **Tailwind + component hygiene:** styling remains scoped to `src/features/previousCollection/components/*` and `src/pages/previousCollection/PreviousCollectionPage.tsx`, preserving modular boundaries for future extraction and API-backed composition.
+- **Shared styling tokens:** introduced minimal reusable variables in `src/index.css` (`--previous-page-background`, `--previous-block-background`) to avoid repeating raw color values across multiple components.
+- **Maintainability:** moved repeated page copy/card metadata into `src/features/previousCollection/data/previousCollectionContent.ts` so structure and content can evolve without JSX churn.
+- **Validation:** `pnpm build` and `pnpm lint:nix` both executed successfully on March 5, 2026 with no build or lint failures.
 
 ***Checkpoint 4: Responsive + Accessibility Hardening***
-- [ ] Add responsive Tailwind adjustments for mobile, tablet, and desktop behavior.
-- [ ] Ensure baseline accessibility requirements are met across page sections.
-- [ ] Keep implementation limited to current feature scope without adding unrelated UI.
-- [ ] A test: extend e2e checks for at least one desktop and one mobile expectation, then run `pnpm test:e2e:nix`.
+- [x] Add responsive Tailwind adjustments for mobile, tablet, and desktop behavior.
+- [x] Ensure baseline accessibility requirements are met across page sections.
+- [x] Keep implementation limited to current feature scope without adding unrelated UI.
+- [x] A test: extend e2e checks for at least one desktop and one mobile expectation, then run `pnpm test:e2e:nix`.
+
+### Checkpoint 4 Notes (2026-03-05)
+- **Responsive hardening:** preserved a vertical content flow across mobile and desktop while scaling component sizes at larger breakpoints (wider page container, larger featured media area, and larger desktop typography/controls).
+- **Accessibility updates:** improved interactive element clarity with explicit nav link labels, keyboard-visible focus outlines on bottom navigation links, and `aria-current="page"` on the current collections destination.
+- **Scope control:** changes remained constrained to the existing previous-collection route/components and test coverage, with no extra routes or unrelated UI additions.
+- **E2E coverage:** extended `e2e/app-shell.spec.ts` with `previous collection supporting block responds across breakpoints` to assert vertical section ordering and desktop scale expectations.
+- **Validation:** `pnpm test:e2e:nix` executed successfully on March 5, 2026 with all 10 Playwright checks passing across mobile and desktop projects.
+
+***Checkpoint 5: Aesthetic Matching***
+- [x] Read the styling of the home page and look for the aesthetic there
+- [x] Reuse similar components
+- [x] ensure sizes on mobile and desktop are the same for a consistent look
+- [x] implement the same color and other aesthetics in the new page
+- [x] implement `pnpm lint:nix` as well as a basic accessibility check
+
+### Checkpoint 5 Notes (2026-03-05)
+- **Home aesthetic alignment:** updated the previous-collection route to reuse the homepage visual language (glass-like rounded `header`/`footer` nav shells, matching palette tokens, and shared spacing/rhythm patterns).
+- **Component reuse pattern:** mirrored home shell composition patterns directly in `PreviousCollectionHeader` and `PreviousCollectionBottomNavigation` for consistency without coupling feature modules.
+- **Cross-viewport consistency:** retained vertical ordering on both mobile and desktop while scaling container/media dimensions at larger breakpoints to keep the same visual hierarchy.
+- **Color + style parity:** replaced flat gray placeholders with `--panel-background`, `--panel-border`, and `--shadow-soft` driven surfaces to match the existing design system and avoid drift.
+- **Checkpoint validation:** `pnpm lint:nix` passed and a basic accessibility e2e check (`previous collection page exposes basic accessibility semantics`) was added and verified via `pnpm test:e2e:nix` (12/12 passing).
 
 ***Checkpoint 5: Final Verification + Spec Sync***
 - [ ] Run full pre-PR validation for this feature branch.
